@@ -16,7 +16,7 @@ async function scrapeData() {
 
         listItems.each((idx, el) => {
             
-            const company = { profile_page_url: "", title: "", image_url: "", description: "" };
+            const company = { profile_page_url: "", title: "", image_url: "", website: "", description: "" };
 
             company.profile_page_url = $(el).children("a").attr("href");
 
@@ -24,11 +24,14 @@ async function scrapeData() {
 
             // company.image_url = $(el).children(".img").attr("src");
 
-            company.image_url = $(el).find('img')[0].attribs['data-src'] 
+            company.image_url = $(el).find('img')[0].attribs['data-src'];
             //.find looks for all img and makes an array
             //[0] is the index selector of it
             //.attribs is object attributes raw JS
             //['data--src'] is the hidden class
+
+            // company.website = $(el).children('.website-link__item').attrib('href');
+            //company website scrape not working atm. plus the url would need to be cleaned up.
 
             company.description = $(el).children("p").text();
 
